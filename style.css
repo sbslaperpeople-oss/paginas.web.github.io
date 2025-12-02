@@ -1,66 +1,204 @@
-/* ----- RESPONSIVE GENERAL ----- */
-@media (max-width: 900px) {
+:root {
+    --primario: #0003c29d;
+    --primario-oscuro: #000288;
+    --negro: #000;
+    --gris-fondo: #f3f3f3;
+    --sidebar-ancho: 250px;
+    --blanco: #fff;
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    margin-left: var(--sidebar-ancho);
+    background: var(--gris-fondo);
+    color: #333;
+    scroll-behavior: smooth;
+}
+section { padding: 60px 25px; max-width: 1150px; margin: auto; }
+h2, h3, h4 { margin: 0; }
 
+/* SIDEBAR */
+.sidebar {
+    position: fixed; inset: 0 auto 0 0; width: var(--sidebar-ancho);
+    background: var(--primario-oscuro); color: var(--blanco);
+    padding-top: 20px; overflow-y: auto; box-shadow: 2px 0 10px rgba(0,0,0,0.4);
+}
+.sidebar-header { text-align: center; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.2); }
+.sidebar-menu { list-style: none; padding: 0; margin: 0; }
+.sidebar-menu li { border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-menu a {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--blanco); padding: 14px 20px;
+    text-decoration: none; transition: .2s;
+}
+.sidebar-menu a:hover { background: rgba(0,0,0,0.2); }
+
+/* HEADER */
+header {
+    height: 55vh;
+    background: linear-gradient(135deg, #000, var(--primario-oscuro));
+    color: var(--blanco); display: flex;
+    flex-direction: column; justify-content: center;
+    text-align: center; padding: 20px;
+}
+header h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: #0d00c4b9;
+    text-shadow: 0 3px 6px rgba(0,0,0,0.5);
+    margin-bottom: 10px;
+}
+h4 { text-align: center; color: var(--primario-oscuro); margin-bottom: 25px; font-size: 2rem; }
+
+/* GRID */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+
+/* CARDS */
+.card {
+    background: #1e1e1e; border-radius: 12px; padding-bottom: 20px;
+    color: var(--blanco); overflow: hidden; text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3); transition: .3s;
+}
+.card img { width: 100%; height: 230px; object-fit: cover; }
+.card:hover { transform: translateY(-8px); }
+.card h3 { margin-top: 15px; color: #001aff80; }
+
+/* ICONO INFO */
+.info-icon {
+    display: inline-block;
+    margin-left: 8px;
+    cursor: pointer;
+    color: #fff;
+    background: #001aff;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    line-height: 26px;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0 0 8px rgba(0, 0, 255, 0.4);
+    transition: .3s;
+    font-family: "Times New Roman", serif;
+}
+.info-icon:hover { transform: scale(1.15); background: #0030c7; }
+
+/* BOTONES */
+.btn {
+    display: inline-block; background: var(--primario); color: var(--blanco);
+    padding: 12px 25px; border-radius: 6px; text-decoration: none;
+    margin-top: 12px; transition: .3s;
+}
+.btn:hover { background: var(--primario-oscuro); }
+
+/* FORMULARIO */
+#contacto form input, #contacto form textarea {
+    width: 100%; padding: 12px; border-radius: 8px;
+    border: 1px solid #ccc; margin-bottom: 15px; font-size: 16px;
+}
+
+/* FOOTER */
+footer { background: #1d1d1d; color: var(--blanco); padding: 25px; text-align: center; }
+
+/* EMAIL FLOAT BUTTON */
+.email-btn {
+    position: fixed; bottom: 22px; right: 22px; width: 65px; height: 65px;
+    background: #0044ff; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.35); transition: .3s;
+}
+.email-btn:hover { transform: scale(1.1); }
+.email-btn img { width: 38px; }
+
+/* MODALES */
+.modal {
+    display: none; position: fixed; z-index: 1000; left: 0; top: 0;
+    width: 100%; height: 100%; overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+}
+.modal-content {
+    background-color: #fff; margin: 10% auto; padding: 20px;
+    border-radius: 10px; max-width: 600px; color: #333;
+    position: relative;
+}
+.close {
+    color: #aaa; position: absolute; top: 10px; right: 20px;
+    font-size: 28px; font-weight: bold; cursor: pointer;
+}
+.close:hover { color: #000; }
+.modal-content h3 { color: #001aff; margin-bottom: 15px; }
+.modal-content ul { padding-left: 20px; }
+
+/* 📱 RESPONSIVE PARA CELULARES */
+@media (max-width: 768px) {
+
+    /* Reducir o esconder sidebar y permitir menú vertical */
     body {
-        padding-left: 0 !important; /* sidebar deja de ocupar espacio en móviles */
+        margin-left: 0; /* Elimina espacio fijo del sidebar */
     }
-
     .sidebar {
-        width: 100% !important;
-        height: auto !important;
-        position: relative !important;
-        padding-bottom: 10px;
+        width: 100%;
+        height: auto;
+        position: relative;
+        box-shadow: none;
+    }
+    .sidebar-menu a {
+        justify-content: center;
+        padding: 12px 10px;
     }
 
-    .sidebar-menu li {
-        display: inline-block;
-        width: 50%;
-        text-align: center;
-    }
-
+    /* Ajustar HEADER */
     header {
-        padding: 40px 20px !important;
-        text-align: center;
+        height: auto;
+        padding: 60px 20px;
     }
-
     header h1 {
-        font-size: 24px !important;
+        font-size: 2rem;
     }
 
+    /* Secciones */
+    section {
+        padding: 40px 15px;
+    }
+
+    /* Grid más cómodo */
     .grid {
-        grid-template-columns: 1fr !important;
-        gap: 15px !important;
+        grid-template-columns: 1fr; /* una columna */
+        gap: 20px;
     }
 
-    .card {
-        width: 100% !important;
-        margin: auto;
+    .card img {
+        height: 180px; /* reduce altura para pantallas pequeñas */
     }
 
-    .modal-content {
-        width: 92% !important;
-        margin-top: 30% !important;
+    /* Botón flotante más pequeño */
+    .email-btn {
+        width: 55px;
+        height: 55px;
+        bottom: 18px;
+        right: 18px;
     }
-}
-
-/* ----- RESPONSIVE CELULARES PEQUEÑOS ----- */
-@media (max-width: 500px){
-
-    .sidebar-menu li {
-        width: 100%;  /* cada botón en una fila */
-        padding: 8px 0;
-    }
-
-    header h1 {
-        font-size: 20px !important;
-        line-height: 1.3;
-    }
-
-    .btn {
-        width: 100% !important;
-    }
-
     .email-btn img {
-        width: 24px !important;
+        width: 30px;
+    }
+
+    /* Modales más adaptables */
+    .modal-content {
+        width: 90%;
+        margin: 30% auto;
+        padding: 15px;
     }
 }
+
+/* 📱 Extra para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.7rem;
+    }
+    h4 {
+        font-size: 1.5rem;
+    }
+    .card img {
+        height: 150px;
+    }
+}
+
